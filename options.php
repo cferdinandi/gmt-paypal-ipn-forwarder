@@ -23,8 +23,19 @@
 
 	function gmt_paypal_ipn_forwarder_settings_field_urls() {
 		$options = gmt_paypal_ipn_forwarder_get_theme_options();
+			// Broadcast
+			foreach ( $options['urls'] as $url ) {
+				// wp_remote_post( trim( esc_url_raw( $url ) ), array(
+				// 		'timeout' => 150,
+				// 		'httpversion' => '1.1',
+		  //               'blocking' => false,
+				// 		'body' => $posted,
+				//     )
+				// );
+				keel_print_a( trim( esc_url_raw( $url ) ) );
+			}
 		?>
-		<textarea class="large-text" type="text" name="gmt_paypal_ipn_forwarder_theme_options[urls]" id="urls" cols="50" rows="10" /><?php echo esc_textarea( implode( "\n", $options['urls'] ) ); ?></textarea>
+		<textarea class="large-text" type="text" name="gmt_paypal_ipn_forwarder_theme_options[urls]" id="urls" cols="50" rows="10" /><?php echo esc_textarea( implode( "\r\n", $options['urls'] ) ); ?></textarea>
 		<label class="description" for="urls"><?php _e( 'URLs to forward to. Put each URL on it\'s own line.', 'paypal' ); ?></label>
 		<?php
 	}
@@ -57,7 +68,7 @@
 		$output = array();
 
 		if ( isset( $input['urls'] ) && ! empty( $input['urls'] ) )
-			$output['urls'] = explode( "\n", esc_url_raw( $input['urls'] ) );
+			$output['urls'] = explode( "\r\n", wp_filter_nohtml_kses( $input['urls'] ) );
 
 		return apply_filters( 'gmt_paypal_ipn_forwarder_theme_options_validate', $output, $input );
 	}
