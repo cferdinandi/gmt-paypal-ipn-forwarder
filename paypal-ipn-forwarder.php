@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/cferdinandi/paypal-ipn-forwarder/
  * GitHub Plugin URI: https://github.com/cferdinandi/paypal-ipn-forwarder/
  * Description: Forward PayPal IPN to multiple other IPN services in WordPress. Extends <a href="https://wordpress.org/plugins/paypal-ipn/">PayPal IPN for WordPress</a>. Add forwarding URLs under <a href="options-general.php?page=gmt_paypal_ipn_forwarder_options">Settings &rarr; PayPal IPN Forwarder</a>
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author URI: http://gomakethings.com
  * License: MIT
  *
