@@ -24,8 +24,8 @@
 	function gmt_paypal_ipn_forwarder_settings_field_urls() {
 		$options = gmt_paypal_ipn_forwarder_get_theme_options();
 		?>
-		<textarea class="large-text" type="text" name="gmt_paypal_ipn_forwarder_theme_options[urls]" id="urls" cols="50" rows="10" /><?php echo esc_textarea( implode( "\r\n", $options['urls'] ) ); ?></textarea>
-		<label class="description" for="urls"><?php _e( 'URLs to forward to. Put each URL on it\'s own line.', 'paypal' ); ?></label>
+		<textarea class="large-text" type="text" name="gmt_paypal_ipn_forwarder_theme_options[urls]" id="urls" cols="50" rows="10" /><?php echo esc_textarea( implode( ",", $options['urls'] ) ); ?></textarea>
+		<label class="description" for="urls"><?php _e( 'URLs to forward to. Separate each one with a comma.', 'paypal' ); ?></label>
 		<?php
 	}
 
@@ -57,7 +57,7 @@
 		$output = array();
 
 		if ( isset( $input['urls'] ) && ! empty( $input['urls'] ) )
-			$output['urls'] = explode( "\r\n", wp_filter_nohtml_kses( $input['urls'] ) );
+			$output['urls'] = explode( ",", wp_filter_nohtml_kses( $input['urls'] ) );
 
 		return apply_filters( 'gmt_paypal_ipn_forwarder_theme_options_validate', $output, $input );
 	}
